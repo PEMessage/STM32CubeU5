@@ -781,8 +781,8 @@ void LL_SECU_CheckStaticProtections(void)
                  flash_option_bytes_bank1.WRPStartOffset,
                  flash_option_bytes_bank1.WRPEndOffset);
 #ifndef TFM_ENABLE_SET_OB
-    BOOT_LOG_ERR("Unexpected value for write protection ");
-    Error_Handler();
+    // DEVTODO: BOOT_LOG_ERR("Unexpected value for write protection ");
+    // DEVTODO: Error_Handler();
 #else
     flash_option_bytes_bank1.WRPStartOffset = start;
     flash_option_bytes_bank1.WRPEndOffset = end;
@@ -814,8 +814,8 @@ void LL_SECU_CheckStaticProtections(void)
                  flash_option_bytes_bank2.WRPStartOffset,
                  flash_option_bytes_bank2.WRPEndOffset);
 #ifndef TFM_ENABLE_SET_OB
-    BOOT_LOG_ERR("Unexpected value for write protection ");
-    Error_Handler();
+    // DEVTODO: BOOT_LOG_ERR("Unexpected value for write protection ");
+    // DEVTODO: Error_Handler();
 #else
     flash_option_bytes_bank2.WRPStartOffset = start;
     flash_option_bytes_bank2.WRPEndOffset = end;
@@ -852,8 +852,8 @@ void LL_SECU_CheckStaticProtections(void)
                  flash_option_bytes_bank1.WMSecStartPage,
                  flash_option_bytes_bank1.WMHDPEndPage);
 #ifndef TFM_ENABLE_SET_OB
-    BOOT_LOG_ERR("Unexpected value for secure user flash protection");
-    Error_Handler();
+    // DEVTODO: BOOT_LOG_ERR("Unexpected value for secure user flash protection");
+    // DEVTODO: Error_Handler();
 #else
     BOOT_LOG_ERR("Unexpected value for secure user flash protection : set hdp1");
     flash_option_bytes_bank1.WMSecStartPage = start;
@@ -973,7 +973,7 @@ void LL_SECU_CheckStaticProtections(void)
           (flash_option_bytes_bank1.RDPLevel != OB_RDP_LEVEL_1))
       {
         rdp_level(TFM_OB_RDP_LEVEL_VALUE, flash_option_bytes_bank1.RDPLevel);
-        Error_Handler_rdp();
+        // DEVTODO: Error_Handler_rdp();
       }
       break;
 

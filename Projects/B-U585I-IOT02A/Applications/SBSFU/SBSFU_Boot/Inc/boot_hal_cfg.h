@@ -57,7 +57,7 @@
 
 #ifdef TFM_DEV_MODE
 #define TFM_OB_BOOT_LOCK 0 /*!< BOOT Lock expected value  */
-#define TFM_ENABLE_SET_OB /*!< Option bytes are set by SBSFU_Boot when not correctly set  */
+// DEVTODO: #define TFM_ENABLE_SET_OB /*!< Option bytes are set by SBSFU_Boot when not correctly set  */
 #define TFM_ERROR_HANDLER_NON_SECURE /*!< Error handler is in Non Secure , this allows regression without jumping   */
 #else
 #define TFM_WRP_LOCK_ENABLE /*!< Write Protection Lock */

@@ -37,7 +37,7 @@ extern "C" {
  * printed. Messages at or below this level can be printed.
  */
 #ifndef MCUBOOT_LOG_LEVEL
-#define MCUBOOT_LOG_LEVEL           MCUBOOT_LOG_LEVEL_INFO
+#define MCUBOOT_LOG_LEVEL           MCUBOOT_LOG_LEVEL_DEBUG // DEVTODO
 #endif
 
 #define MCUBOOT_LOG_MODULE_DECLARE(domain)      /* Ignore */
