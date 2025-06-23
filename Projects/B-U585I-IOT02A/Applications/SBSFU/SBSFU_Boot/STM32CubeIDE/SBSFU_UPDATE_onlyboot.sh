@@ -24,11 +24,15 @@ app_image_number=0
 s_data_image_number=0
 ns_data_image_number=0
 
+runcmd() {
+    echo "Runing: $*"
+    # "$@"
+}
 
 
 if [ $app_image_number == 2 ]; then
 echo "Write SBSFU_Appli Secure"
-"$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_s_app_init.bin $slot0 -v
+runcmd "$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_s_app_init.bin $slot0 -v
 ret=$?
 if [ $ret != 0 ]; then
   if [ "$1" != "AUTO" ]; then read -p "SBSFU_UPDATE script failed, press a key" -n1 -s; fi
@@ -36,7 +40,7 @@ if [ $ret != 0 ]; then
 fi
 echo "SBSFU_Appli Secure Written"
 echo "Write SBSFU_Appli NonSecure"
-"$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_ns_app_init.bin $slot1 -v
+runcmd "$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_ns_app_init.bin $slot1 -v
 ret=$?
 if [ $ret != 0 ]; then
   if [ "$1" != "AUTO" ]; then read -p "SBSFU_UPDATE script failed, press a key" -n1 -s; fi
@@ -49,7 +53,7 @@ fi
 
 if [ $app_image_number == 1 ]; then
 echo "Write SBSFU_Appli"
-"$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_app_init.bin $slot0 -v
+runcmd "$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_app_init.bin $slot0 -v
 ret=$?
 if [ $ret != 0 ]; then
   if [ "$1" != "AUTO" ]; then read -p "SBSFU_UPDATE script failed, press a key" -n1 -s; fi
@@ -66,7 +70,7 @@ if [ ! -e $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_s_data_init.bin ]; then
     if [ "$1" != "AUTO" ]; then read -p "Error : sbsfu_s_data_init.bin does not exist! Run dataimg.bat script to generate it" -n1 -s; fi
     exit 1
 fi
-"$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_s_data_init.bin $slot4 -v
+runcmd "$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_s_data_init.bin $slot4 -v
 ret=$?
 if [ $ret != 0 ]; then
   if [ "$1" != "AUTO" ]; then read -p "SBSFU_UPDATE script failed, press a key" -n1 -s; fi
@@ -83,7 +87,7 @@ if [ ! -e $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_ns_data_init.bin ]; then
     if [ "$1" != "AUTO" ]; then read -p "Error : sbsfu_ns_data_init.bin does not exist! Run dataimg.bat script to generate it" -n1 -s; fi
     exit 1
 fi
-"$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_ns_data_init.bin $slot5 -v
+runcmd "$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Appli/Binary/sbsfu_ns_data_init.bin $slot5 -v
 ret=$?
 if [ $ret != 0 ]; then
   if [ "$1" != "AUTO" ]; then read -p "SBSFU_UPDATE script failed, press a key" -n1 -s; fi
@@ -95,7 +99,7 @@ fi
 # write loader if config loader is active
 if [ $cfg_loader == 1 ]; then
 echo "Write SBSFU_Loader"
-"$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Loader/Binary/loader.bin $loader -v
+runcmd "$stm32programmercli" $connect -d $SCRIPTPATH/../../SBSFU_Loader/Binary/loader.bin $loader -v
 ret=$?
 if [ $ret != 0 ]; then
   if [ "$1" != "AUTO" ]; then read -p "SBSFU_UPDATE script failed, press a key" -n1 -s; fi
@@ -107,7 +111,7 @@ fi
 
 
 echo "Write SBSFU_Boot"
-"$stm32programmercli" $connect -d $SCRIPTPATH/Release/SBSFU_Boot.bin $boot -v
+runcmd "$stm32programmercli" $connect -d $SCRIPTPATH/Release/SBSFU_Boot.bin $boot -v
 ret=$?
 if [ $ret != 0 ]; then
   if [ "$1" != "AUTO" ]; then read -p "SBSFU_UPDATE script failed, press a key" -n1 -s; fi
